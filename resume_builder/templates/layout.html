@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="static/about.css">
+    <link rel="stylesheet" type="text/css" href="static/home_style.css">
+
+    <title> Resume Builder </title>
+</head>
+
+<header class="nav-bar" style="color: white;">
+    {% if current_user.is_authenticated %}
+        <span class="nav-bar-items">
+            <a style="text-decoration: none; color:white" href="{{ url_for('home')}} ">Home</a>
+        </span>
+        <span class="nav-bar-items">
+            <a style="text-decoration: none; color:white" href="{{ url_for('template_page') }}">Build Resume</a>
+        </span>
+        <span class="nav-bar-items">
+            <a style="text-decoration: none; color:white" href="{{ url_for('about') }}">About Us</a>
+        </span>
+        <span class="nav-bar-items">
+            <a style="text-decoration: none; color:white" href="#">Contact Us</a>
+        </span>
+        <span class="nav-bar-items">
+            <a style="text-decoration: none; color:white" href="{{ url_for('logout') }}">Logout</a>
+        </span>
+    {% else %}
+        <span class="nav-bar-items">
+            <a style="text-decoration: none; color:white" href="{{ url_for('login') }}">Login</a>
+        </span>
+        <span class="nav-bar-items">
+            <a style="text-decoration: none; color:white" href="{{ url_for('register')}}">Register</a>
+        </span>
+    {% endif %}
+</header>
+{% block content %}{% endblock %}

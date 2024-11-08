@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <link rel="stylesheet" type="text/css" href="static/form_style.css">
+    <link rel="stylesheet" type="text/css" href="static/home_input_page.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <title>Resume Template form</title>
+</head>
+
+<body>
+    <header class="nav-bar" style="color: white;">
+        {% if current_user.is_authenticated %}
+            <span class="nav-bar-items">
+                <a href="{{ url_for('home')}} ">Home</a>
+            </span>
+            <span class="nav-bar-items">
+                <a href="{{ url_for('template_page') }}">Build Resume</a>
+            </span>
+            <span class="nav-bar-items">
+                <a href="{{ url_for('about') }}">About Us</a>
+            </span>
+            <span class="nav-bar-items">
+                <a href="contact.html">Contact Us</a>
+            </span>
+            <span class="nav-bar-items">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </span>
+        {% else %}
+                <span class="nav-bar-items">
+                    <a href="{{ url_for('login') }}">Login</a>
+                </span>
+                <span class="nav-bar-items">
+                    <a href="{{ url_for('register')}}">Register</a>
+                </span>
+        {% endif %}
+    </header>
+    <div class="fullscreen-video-wrap">
+        <video autoplay muted loop>
+            <source src="static/videos/form_page.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="overlay"></div>
+    <div class="main">
+        <form id="my-form" action="http://localhost:5000/your-resume" method = "POST">
+
+            <h1 id="main-heading">Please fill out this form!</h1>
+            <section class="sub-section">
+                <h2>Personal Details</h2>
+                <span class="label_input">
+                    <label class="form-label" for="name">Name </label>
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required>
+                </span>
+                <span class="label_input">
+                    <label class="form-label" for="designation">Designation </label>
+                    <input type="text" name="designation" id="designation" placeholder="Enter your designation"
+                        required><br>
+                </span>
+                <p style="margin:40px;">
+                    <span class="label_input">
+                        <label class="form-label" for="xp">Experience(in years)</label>
+                        <input type="number" name="xp" id="xp" min="0" placeholder="Enter your experience(in years)"
+                            required>
+                    </span>
+                </p>
+                <p>
+                    <label class="form-label" for="profile">Profile (About Yourself in 2 to 3 lines) </label><br>
+                    <textarea name="profile" id="profile" cols="30" rows="10" 
+                        placeholder="Describe Yourself" required></textarea>
+                </p>
+            </section>
+            <section class="sub-section">
+                <h2>Contact Me</h2>
+                <span class="label_input">
+                    <label class="form-label" for="phone">Mobile no./Phone no. </label>
+                    <input type="tel" name="phone" id="phone" required>
+                </span>
+                <span class="label_input">
+                    <label class="form-label" for="email">Email </label>
+                    <input type="email" name="email" id="email" placeholder="Enter a valid email address" required>
+                </span>
+            </section>
+            <section class="sub-section">
+                <h2>Location</h2>
+
+                <label class="form-label" for="city">City </label>
+                <input type="text" name="city" id="city" placeholder="Enter your City" required>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label class="form-label" for="city">Country </label>
+                <input type="text" name="country" id="country" placeholder="Enter your Country" required>
+            </section>
+            <section class="sub-section">
+                <h2>Social Media Connect</h2>
+                <span class="label_input">
+                    <label class="form-label" for="linkedin">LinkedIn </label>
+                    <input type="text" name="linkedin" id="linkedin" required>
+                </span>
+                <span class="label_input">
+                    <label for="insta">Instagram </label>
+                    <input type="text" name="insta" id="insta">
+                </span>
+                <span class="label_input">
+                    <label for="twitter">Twitter </label>
+                    <input type="text" name="twitter" id="twitter">
+                </span>
+            </section>
+            <section class="sub-section">
+                <h1>Experience details: </h1>
+                <span class="label_input">
+                    <label class="form-label" for="post1">Post in Company: </label>
+                    <input type="text" name="post1" id="post1" placeholder="Enter your post" required>
+                </span>
+                <span class="label_input">
+                    <label class="form-label" for="company1">Company Name: </label>
+                    <input type="text" name="company1" id="company1" placeholder="Enter Company Name" required>
+                </span>
+                <p>
+                    <span class="label_input">
+                        <label class="form-label" for="cfrom_date1">From: </label>
+                        <input type="month" name="cfrom_date1" id="cfrom_date1" placeholder="Working From" required>
+                    </span>
+                    <span class="label_input">
+                        <label class="form-label" for="cto_date1">To: </label>
+                        <input type="month" name="cto_date1" id="cto_date1" placeholder="Worked Upto" required>
+                    </span>
+                </p>
+                <p>
+                    <label class="form-label" for="desc1">Job Description(1 or 2 lines): </label><br><br>
+                    <textarea name="desc1" id="desc1" cols="30" rows="10" 
+                        placeholder="Enter Job Description" required>
+                    </textarea>
+                </p>
+                <span class="label_input">
+                    <label class="form-label" for="post2">Post in Company: </label>
+                    <input type="text" name="post2" placeholder="Enter your post" id="post2" required>
+                </span>
+                <span class="label_input">
+                    <label class="form-label" for="company2">Company Name: </label>
+                    <input type="text" name="company2" placeholder="Enter Company Name" id="company2" required>
+                </span>
+                <p>
+                    <span class="label_input">
+                        <label class="form-label" for="cfrom_date2">From: </label>
+                        <input type="month" name="cfrom_date2" id="cfrom_date2" placeholder="Working from" required>
+                    </span>
+                    <span class="label_input">
+                        <label class="form-label" for="cto_date2">To: </label>
+                        <input type="month" name="cto_date2" id="cto_date2" placeholder="Worked Upto" required>
+                    </span>
+                </p>
+                <p>
+                    <label class="form-label" for="desc2">Job Description(1 or 2 lines): </label><br><br>
+                    <textarea name="desc2" id="desc2" cols="30" rows="10"
+                        placeholder="Enter Job Description" required>
+                    </textarea>
+                </p>
+                <span class="label_input">
+                    <label for="post3">Post in Company: </label>
+                    <input type="text" name="post3" id="post3" placeholder="Enter your post">
+                </span>
+                <span class="label_input">
+                    <label for="company3">Company Name: </label>
+                    <input type="text" name="company3" id="company3" placeholder="Enter Company Name">
+                </span>
+                <p>
+                    <span class="label_input">
+                        <label for="cfrom_date3">From: </label>
+                        <input type="month" name="cfrom_date3" id="cfrom_date3" placeholder="Working From">
+                    </span>
+                    <span class="label_input">
+                        <label for="cto_date3">To: </label>
+                        <input type="month" name="cto_date3" id="cto_date3" placeholder="Worked Upto">
+                    </span>
+                </p>
+                <p>
+                    <label for="desc3">Job Description(1 or 2 lines): </label><br><br>
+                    <textarea name="desc3" id="desc3" cols="30" rows="10"
+                        placeholder="Enter Job Description">
+                    </textarea>
+                </p>
+            </section>
+            <h1>Education details: </h1>
+
+            <span class="label_input">
+                <label class="form-label" for="deg1">Degree: </label>
+                <input type="text" name="deg1" id="deg1" placeholder="Enter Degree" required>
+            </span>
+            <span class="label_input">
+                <label class="form-label" for="college1">Institution: </label>
+                <input type="text" name="college1" id="college1" placeholder="Enter Institute name" required>
+            </span>
+
+            <br><br>
+            <p>
+                <span class="label_input">
+                    <label class="form-label" for="efrom_date1">From: </label>
+                    <input type="month" name="efrom_date1" id="efrom_date1" placeholder="Studying from" required>
+                </span>
+                <span class="label_input">
+                    <label class="form-label" for="eto_date1">To: </label>
+                    <input type="month" name="eto_date1" id="eto_date1" placeholder="Studied Upto" required>
+                </span>
+            </p>
+            <br><br><br>
+            <span class="label_input">
+                <label class="form-label" for="deg2">Degree: </label>
+                <input type="text" name="deg2" id="deg2" placeholder="Enter Degree" required>
+            </span>
+            <span class="label_input">
+                <label class="form-label" for="college2">Institution: </label>
+                <input type="text" name="college2" id="college2" placeholder="Enter Institute name" required>
+            </span>
+
+            <br><br>
+            <p>
+                <span class="label_input">
+                    <label class="form-label" for="efrom_date2">From: </label>
+                    <input type="month" name="efrom_date2" id="efrom_date2" placeholder="Studied from" required>
+                </span>
+                <span class="label_input">
+                    <label class="form-label" for="eto_date2">To: </label>
+                    <input type="month" name="eto_date2" id="eto_date2" placeholder="Studied Upto" required>
+                </span>
+            </p>
+
+            <br><br><br>
+            <span class="label_input">
+                <label for="deg3">Degree: </label>
+                <input type="text" name="deg3" id="deg3" placeholder="Enter Degree">
+            </span>
+            <span class="label_input">
+                <label for="college3">Institution: </label>
+                <input type="text" name="college3" id="college3" placeholder="Enter Institute name">
+            </span>
+            <br><br>
+            <p>
+                <span class="label_input">
+                    <label for="efrom_date3">From: </label>
+                    <input type="month" name="efrom_date3" id="efrom_date3" placeholder="Studied from">
+                </span>
+                <span class="label_input">
+                    <label for="eto_date3">To: </label>
+                    <input type="month" name="eto_date3" id="eto_date3" placeholder="Studied Upto">
+                </span>
+            </p>
+            <br><br>
+            <section class="sub-section">
+                <h1>Skills</h1>
+                <span class="label_input">
+                    <label class="form-label" for="skill1">Skill 1: </label>
+                    <input type="text" name="skill1" id="skill1" placeholder="Enter any skill" required>
+                </span>
+                <p>
+                    <label class="form-label" for="percent1">Please enter your expertise level in the skill
+                        mentioned(percentage value):
+                    </label>
+                    <input type="number" name="ht1" id="percent1" min="1" max="100" placeholder="100" required>
+                </p>
+                <span class="label_input">
+                    <label class="form-label" for="skill2">Skill 2: </label>
+                    <input type="text" name="skill2" id="skill2" placeholder="Enter any skill" required>
+                </span>
+                <p>
+                    <label class="form-label" for="percent2">Please enter your expertise level in the skill
+                        mentioned(percentage value):
+                    </label>
+                    <input type="number" name="ht2" id="percent2" min="1" max="100" placeholder="100" required>
+                </p>
+                <span class="label_input">
+                    <label class="form-label" for="skill3">Skill 3: </label>
+                    <input type="text" name="skill3" id="skill3" placeholder="Enter any skill" required>
+                </span>
+                <p>
+                    <label class="form-label" for="percent3">Please enter your expertise level in the skill
+                        mentioned(percentage value):
+                    </label>
+                    <input type="number" name="ht3" id="percent3" min="1" max="100" placeholder="100" required>
+                </p>
+                <span class="label_input">
+                    <label for="skill4">Skill 4: </label>
+                    <input type="text" name="skill4" id="skill4" placeholder="Enter any skill">
+                </span>
+                <p>
+                    <label for="percent4">Please enter your expertise level in the skill mentioned(percentage value):
+                    </label>
+                    <input type="number" name="ht4" id="percent4" min="1" max="100" placeholder="100">
+                </p>
+                <span class="label_input">
+                    <label for="skill5">Skill 5: </label>
+                    <input type="text" name="skill5" id="skill5" placeholder="Enter any skill">
+                </span>
+                <p>
+                    <label for="percent5">Please enter your expertise level in the skill mentioned(percentage value):
+                    </label>
+                    <input type="number" name="ht5" id="percent5" min="1" max="100" placeholder="100">
+                </p>
+                <span class="label_input">
+                    <label for="skill6">Skill 6: </label>
+                    <input type="text" name="skill6" id="skill6" placeholder="Enter any skill">
+                </span>
+                <p>
+                    <label for="percent6">Please enter your expertise level in the skill mentioned(percentage value):
+                    </label>
+                    <input type="number" name="ht6" id="percent6" min="1" max="100" placeholder="100">
+                </p>
+            </section>
+            <h1>Hobbies</h1>
+            <section class="sub-section-hobby" style="display: flex;">
+                
+                <span class="label_input-hobby">
+                    <label class="form-label" for="hobby1">Hobby 1: </label>
+                    <input type="text" name="hobby1" id="hobby1" placeholder="Enter your hobby" required>
+                </span>
+                <span class="label_input-hobby">
+                    <label class="form-label" for="hobby2">Hobby 2: </label>
+                    <input type="text" name="hobby2" id="hobby2" placeholder="Enter your hobby" required>
+                </span>
+                <span class="label_input-hobby">
+                    <label class="form-label" for="hobby3">Hobby 3: </label>
+                    <input type="text" name="hobby3" id="hobby3" placeholder="Enter your hobby" required>
+                </span>
+                <span class="label_input-hobby">
+                    <label for="hobby4">Hobby 4: </label>
+                    <input type="text" name="hobby4" id="hobby4" placeholder="Enter your hobby">
+                </span>
+                <span class="label_input-hobby">
+                    <label for="hobby5">Hobby 5: </label>
+                    <input type="text" name="hobby5" id="hobby5" placeholder="Enter your hobby">
+                </span>
+            </section>
+            <p>
+                <button class="submit-button">Submit!</button>
+            </p>
+        </form>        
+    </div>
+</body>
+<script>
+    function getIp(callback) {
+        fetch('https://ipinfo.io/json?token=0d3e7b70ac5b02', { headers: { 'Accept': 'application/json' } })
+            .then((resp) => resp.json())
+            .catch(() => {
+                return {
+                    country: 'in',
+                };
+            })
+            .then((resp) => callback(resp.country));
+    }
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        initialCountry: "auto",
+        geoIpLookup: getIp,
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>
+
+</html>

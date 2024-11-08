@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="static/register.css">
+    <link rel="stylesheet" href="static/home_style.css">
+    
+</head>
+<body style="background-color: #ffebee;">
+    <header class="nav-bar" style="color: white;">
+        <span class="nav-bar-items">
+            <a href="{{ url_for('home')}} ">Home</a>
+        </span>
+        <span class="nav-bar-items">
+            <a href="{{ url_for('login') }}">Login</a>
+        </span>
+        <span class="nav-bar-items">
+            <a href="{{ url_for('register')}}">Register</a>
+        </span>
+    </header>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <h1>Create Account</h1><p></p>
+                    {{ form.username(placeholder="Username") }}
+                    {{ form.email(placeholder="Email") }}
+                    {{ form.password(placeholder="Password") }}
+                    {{ form.confirm_password(placeholder="Confirm Your Password") }}
+                <p></p>
+                {{ form.submit(class="submit") }}
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <img src="static/images/resume_builder.png" style="height: 480px; width: 460px;">
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <a href="login"><button class="ghost" id="signIn">Sign In</button></a>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start building exciting resumes!</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <script src="static/scripts/register.js"></script>
+</body>
+</html>
