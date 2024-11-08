@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOUR FINAL RESUME</title>
+    <link type="text/css" rel="stylesheet" href="static/style2.css"/>
+    <link rel="stylesheet" type="text/css" href="static/home_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+</head>
+<body style="background-color: #ffebee; color: white;">
+  <header class="nav-bar" style="color: white;">
+    <span class="nav-bar-items">
+        <a href="{{ url_for('home')}} ">Home</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="{{ url_for('template_page') }}">Build Resume</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="{{ url_for('about') }}">About Us</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="contact.html">Contact Us</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </span>
+  </header>
+    <div class="resume" id="resume" style="height: 1100px;">
+        <div class="base">
+          <div class="profile">
+            <div class="photo">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <div class="info">
+              <h1 class="name">{{ form['name'] }}</h1>
+              <h2 class="job">{{ form['designation'] }}<br>
+              <h3 style="color:darkmagenta; margin-top: 5px;">{{ form['xp'] }} years experience</h3>
+              </h2>
+            </div>
+          </div>
+          <div style="word-wrap:break-word;margin-bottom: 30px;">
+            <h3>About Me</h3>
+            {{ form['profile'] }}
+          </div>
+          <div class="contact">
+            <h3>Contact Me</h3>
+            <div class="call"><span>{{ form['phone'] }}</span></div>
+            <div class="address"><span>{{ form['city'] }},{{ form['country'] }}</span></div>
+            <div class="email"><span>{{ form['email'] }}</span></div>
+          </div>
+          <div class="follow">
+            <h3>Follow Me</h3>
+            <div class="box">
+              {% if(form['linkedin']) %}
+              <div class="link">
+                <i><img src="static/images/linkedin.png" alt="LinkedIn Logo"></i>
+                <span>{{ form['linkedin'] }}</span>
+              </div><p></p>
+              {% endif %}
+              {% if(form['insta']) %}
+              <div class="link">
+                <i><img src="static/images/insta.jpeg" alt="Instagram Logo"></i>
+                <span>{{ form['insta'] }}</span>
+              </div><p></p>
+              {% endif %}
+              {% if(form['twitter']) %}
+              <div class="link">
+                <i><img src="static/images/twitter.jpeg" alt="Twitter Logo"></i>
+                <span>{{ form['twitter'] }}</span>
+              </div>
+              {% endif %}
+              
+            </div>
+          </div>
+        </div>
+        <div class="func">
+          <div>
+            <div class="work">
+              <h3><i class="fa fa-briefcase"></i>Experience</h3>
+              <ul>
+                <li><span>{{ form['post1'] }}</span><small>{{ form['company1'] }}</small><small>{{ form['cfrom_date1'] }} - {{ form['cto_date1'] }}</small></li>
+                <li><span>{{ form['post2'] }}</span><small>{{ form['company2'] }}</small><small>{{ form['cfrom_date2'] }} - {{ form['cto_date2'] }}</small></li>
+                {% if(form['post3']) %}
+                  <li><span>{{ form['post3'] }}</span><small>{{ form['company3'] }}</small><small>{{ form['cfrom_date3'] }} - {{ form['cto_date3'] }}</small></li>
+                {% endif %}
+              </ul>
+            </div>
+  
+            <div class="edu">
+              <h3><i class="fa fa-graduation-cap"></i>Education</h3>
+              <ul>
+                <li><span>{{ form['deg1'] }}</span><small>{{ form['college1'] }}</small><small>{{ form['efrom_date1'] }} - {{ form['eto_date1'] }}</small></li>
+                <li><span>{{ form['deg2'] }}</span><small>{{ form['college2'] }}</small><small>{{ form['efrom_date2'] }} - {{ form['eto_date2'] }}</small></li>
+                {% if(form['deg3']) %}
+                  <li><span>{{ form['deg3'] }}</span><small>{{ form['college3'] }}</small><small>{{ form['efrom_date3'] }} - {{ form['eto_date3'] }}</small></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          
+          <div class="skills-prog">
+            <h3><i class="fas fa-code"></i>Programming Skills</h3>
+            <ul style="margin-top: 10%;">
+              <li data-percent="{{ form['ht1'] }}"><span>{{ form['skill1'] }}</span>
+                <div class="skills-bar">
+                  <div class="bar"></div>
+                </div>
+              </li>
+              <li data-percent="{{ form['ht2'] }}"><span>{{ form['skill2'] }}</span>
+                <div class="skills-bar">
+                  <div class="bar"></div>
+                </div>
+              </li>
+              <li data-percent="{{ form['ht3'] }}"><span>{{ form['skill3'] }}</span>
+                <div class="skills-bar">
+                  <div class="bar"></div>
+                </div>
+              </li> 
+              {% if(form['skill4']) %}
+                <li data-percent="{{ form['ht4'] }}"><span>{{ form['skill4'] }}</span>
+                  <div class="skills-bar">
+                    <div class="bar"></div>
+                  </div>
+                </li>
+              {% endif %}
+
+              {% if(form['skill5']) %}
+                <li data-percent="{{ form['ht5'] }}"><span>{{ form['skill5'] }}</span>
+                  <div class="skills-bar">
+                    <div class="bar"></div>
+                  </div>
+                </li>
+              {% endif %}
+
+              {% if(form['skill6']) %}
+                <li data-percent="{{ form['ht6'] }}"><span>{{ form['skill6'] }}</span>
+                  <div class="skills-bar">
+                    <div class="bar"></div>
+                  </div>
+                </li>
+                {% endif %}
+              </ul>
+          </div>
+          <div class="skills-soft">
+            <h3><i class="fas fa-bezier-curve"></i>Interests</h3>
+            <ul>
+              <div class="circle">
+                <li data-percent="90">
+                  <span style="margin-top: 40%;">{{ form['hobby1'] }}</span><small></small>
+                </li></div>
+                <div class="circle">
+                  <li data-percent="90">
+                    <span style="margin-top: 40%;">{{ form['hobby2'] }}</span><small></small>
+                  </li></div>
+                  <div class="circle">
+                    <li data-percent="90">
+                      <span style="margin-top: 40%;">{{ form['hobby3'] }}</span><small></small>
+                    </li></div>
+              {% if(form['hobby4']) %}
+              <div class="circle">
+                <li data-percent="90">
+                  <span style="margin-top: 40%;">{{ form['hobby4'] }}</span><small></small>
+                </li></div>
+              {% endif %}
+
+              {% if(form['hobby5']) %}
+              <div class="circle">
+                <li data-percent="90">
+                  <span style="margin-top: 40%;">{{ form['hobby5'] }}</span><small></small>
+                </li></div>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    <script src="static/scripts/resume2.js"></script>
+    <button id="download" style="width:20%; height:30px; margin: 20px 575px;"> Download PDF </button>
+    <script src="static/scripts/pdf2.js"></script>
+</body>
+</html>
+

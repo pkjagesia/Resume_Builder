@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOUR FINAL RESUME</title>
+    
+    <link rel="stylesheet" href="static/home_style_4.css">
+    <link rel="stylesheet" href="static/style4.css">
+    <!-- <link rel="stylesheet" type="text/css" href="static/home_style.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+</head>
+  <header class="nav-bar" style="color: white; margin-bottom: 10%;">
+    <span class="nav-bar-items">
+        <a href="{{ url_for('home')}} ">Home</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="{{ url_for('template_page') }}">Build Resume</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="{{ url_for('about') }}">About Us</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="contact.html">Contact Us</a>
+    </span>
+    <span class="nav-bar-items">
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </span>
+  </header>
+<body>  
+  <div id="resume" style= "margin:auto; width: 930px;">
+    <div class="resume-wrapper">
+      <section class="profile section-padding">
+        <div class="container">
+          <div class="picture-resume-wrapper">
+            <div class="picture-resume">
+          </div>
+          <div class="name-wrapper">
+            <h1>{{ form['name'] }}</h1>
+            <h2 style="max-width: fit-content; color:gray;">{{ form['designation'] }}</h2>
+            <h3 style="max-width: fit-content;"> {{ form['xp'] }} years experience </h3>
+          </div>
+          <div class="clearfix"></div>
+          <div class="contact-info clearfix">
+            <ul class="list-titles">
+              <li>Call</li>
+              <li>Mail</li>
+              <li>Home</li>
+            </ul>
+            <ul class="list-content">
+              <li>{{ form['phone'] }} </li> <!-- YOUR PHONE NUMBER  -->
+              <li>{{ form['email'] }} </li> <!-- YOUR EMAIL -->
+              <li>{{ form['city'] }}, {{ form['country'] }}</li> <!-- YOUR STATE AND COUNTRY  -->
+            </ul>
+          </div>
+          <div class="contact-presentation"> <!-- YOUR PRESENTATION RESUME  -->
+            <p style="word-wrap: break-word;">
+              {{ form['profile'] }}
+            </p>
+          </div>
+          <div class="contact-social clearfix">
+            <h2 style="margin-left: -120px;">Follow Me:</h2>
+            <ul class="list-titles">
+              {% if(form['linkedin']) %}
+                <li>LinkedIn</li>
+                <p class="list-content-alias">{{ form['linkedin'] }}</p>
+              {% endif %}
+              {% if(form['insta']) %}
+                <li>Instagram</li>
+                <p class="list-content-alias">{{ form['insta'] }}</p>
+              {% endif %}
+              {% if(form['twitter']) %}
+                <li>Twitter</li>
+                <p class="list-content-alias">{{ form['twitter'] }}</p>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+    
+        <div class="contact-social clearfix">
+          <h2 style="margin-left: -120px;">Interests:</h2>
+          <ul class="list-titles">
+              <li>{{ form['hobby1'] }}</li>
+              <li>{{ form['hobby2'] }}</li>
+              <li>{{ form['hobby3'] }}</li>
+              {% if(form['hobby4']) %}
+                  <li>{{ form['hobby4'] }} </li>
+              {% endif %}
+              {% if(form['hobby5']) %}
+                  <li>{{ form['hobby5'] }}</li>
+              {% endif %}
+          </ul>
+        </div>  
+      </section>
+      
+      <section class="experience section-padding">
+        <div class="container">
+          <h3 class="experience-title">Experience</h3>
+          
+          <div class="experience-wrapper">
+            <div class="company-wrapper clearfix">
+              <div class="experience-title">{{ form['company1'] }}</div> <!-- NAME OF THE COMPANY YOU WORK WITH  -->
+              <div class="time">{{ form['cfrom_date1'] }} - {{ form['cto_date1'] }}</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+          </div>
+            
+            <div class="job-wrapper clearfix">
+              <div class="experience-title">{{ form['post1'] }}</div> <!-- JOB TITLE  -->
+              <div class="company-description">
+                <p>{{ form['desc1'] }}</p>  
+              </div>
+            </div>
+            
+            <div class="company-wrapper clearfix">
+              <div class="experience-title">{{ form['company2'] }}</div> <!-- NAME OF THE COMPANY YOU WORK WITH  -->
+              <div class="time">{{ form['cfrom_date2'] }} - {{ form['cto_date2'] }}</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+            </div>
+            
+            <div class="job-wrapper clearfix">
+              <div class="experience-title">{{ form['post2'] }}</div> <!-- JOB TITLE  -->
+              <div class="company-description">
+                <p>{{ form['desc2'] }}</p>  <!-- JOB DESCRIPTION  -->
+              </div>
+            </div>
+            
+            {% if(form['post3']) %}
+            <div class="company-wrapper clearfix">
+              <div class="experience-title">{{ form['company3'] }}</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
+              <div class="time">{{ form['cfrom_date3'] }} - {{ form['cto_date3'] }}</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+            </div> 
+            
+            <div class="job-wrapper clearfix">
+              <div class="experience-title">{{ form['post3'] }} </div> <!-- JOB TITLE  -->
+              <div class="company-description">
+                <p>{{ form['desc3'] }}</p>   <!-- JOB DESCRIPTION  -->
+              </div>
+            </div>
+            {% endif %}
+            
+          </div><!--Skill experience-->
+
+          <div class="section-wrapper clearfix">
+            <h3 class="section-title">Skills</h3>  <!-- YOUR SET OF SKILLS  -->
+              <ul>
+                <li>{{ form['skill1'] }}</li>
+                <span class="bar"><span data-percent="{{ form['ht1'] }}"></span></span>
+    
+                <li>{{ form['skill2'] }}</li>
+                <span class="bar"><span data-percent="{{ form['ht2'] }}"></span></span>
+    
+                <li>{{ form['skill3'] }}</li>
+                <span class="bar"><span data-percent="{{ form['ht3'] }}"></span></span>
+    
+                {% if(form['skill4']) %}
+                  <li>{{ form['skill4'] }}</li>
+                  <span class="bar"><span data-percent="{{ form['ht4'] }}"></span></span>
+                {% endif %}
+    
+                {% if(form['skill5']) %}
+                  <li>{{ form['skill5'] }}</li>
+                  <span class="bar"><span data-percent="{{ form['ht5'] }}"></span></span>
+                {% endif %}
+    
+                {% if(form['skill6']) %}
+                  <li>{{ form['skill6'] }}</li>
+                  <span class="bar"><span data-percent="{{ form['ht6'] }}"></span></span>
+                {% endif %}
+    
+              </ul>
+          </div>
+          
+          <div class="section-wrapper clearfix">
+            <h3 class="section-title">Education</h3>  
+            <div class="edu">
+              <ul>
+                <li><span>{{ form['deg1'] }}</span><small style="font-weight: bold; color:#5fcaca;">{{ form['college1'] }}</small><small>{{ form['efrom_date1'] }} - {{ form['eto_date1'] }}</small>
+                <div class="verticalLine"></div></li>
+                <li><span>{{ form['deg2'] }}</span><small style="font-weight: bold; color:#5fcaca;">{{ form['college2'] }}</small><small>{{ form['efrom_date2'] }} - {{ form['eto_date2'] }}</small>
+                {% if(form['deg3']) %}
+                  <div class="verticalLine"></div></li>  
+                  <li><span>{{ form['deg3'] }}</span><small style="font-weight: bold; color:#5fcaca;">{{ form['college3'] }}</small><small>{{ form['efrom_date3'] }} - {{ form['eto_date3'] }}</small></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      <div class="clearfix"></div>
+    </div>  
+  </div>
+
+<button id="download" style="width:20%; height:30px; margin: 20px 575px;"> Download PDF </button>
+<script src="static/scripts/pdf4.js"></script>
+<script src="static/scripts/resume4.js"></script>
+</body>
+</html>

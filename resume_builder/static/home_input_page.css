@@ -1,0 +1,23 @@
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.nav-bar{
+    
+    /* height: 70px; */
+    width: 100%;
+    padding:20px;
+    background-color:rgb(103 89 224);
+    display: flex;
+}
+
+.nav-bar-items{
+    margin:20px 30px;
+    font-size: 25px;
+}
+
+.nav-bar-items:hover{
+    color: white;
+    font-size: 40px;
+}

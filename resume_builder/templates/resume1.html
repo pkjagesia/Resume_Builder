@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>YOUR FINAL RESUME</title>
+    <link rel="stylesheet" href="static/style1.css">
+    <link rel="stylesheet" type="text/css" href="static/home_style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script>
+      const ht1 = '{{ form["ht1"] }}';
+      const ht2 = '{{ form["ht2"] }}';
+      const ht3 = '{{ form["ht3"] }}';
+      const ht4 = '{{ form["ht4"] }}';
+      const ht5 = '{{ form["ht5"] }}';
+      const ht6 = '{{ form["ht6"] }}';
+      const skill1 = '{{ form["skill1"] }}';
+      const skill2 = '{{ form["skill2"] }}';
+      const skill3 = '{{ form["skill3"] }}';
+      const skill4 = '{{ form["skill4"] }}';
+      const skill5 = '{{ form["skill5"] }}';
+      const skill6 = '{{ form["skill6"] }}';
+
+    </script>
+  </head>
+
+  <body>
+
+  <header class="nav-bar" style="color: white;">
+      <span class="nav-bar-items">
+          <a href="{{ url_for('home')}} ">Home</a>
+      </span>
+      <span class="nav-bar-items">
+          <a href="{{ url_for('template_page') }}">Build Resume</a>
+      </span>
+      <span class="nav-bar-items">
+          <a href="{{ url_for('about') }}">About Us</a>
+      </span>
+      <span class="nav-bar-items">
+          <a href="contact.html">Contact Us</a>
+      </span>
+      <span class="nav-bar-items">
+          <a href="{{ url_for('logout') }}">Logout</a>
+      </span>
+  </header>
+  
+    <div class="container" id="resumepart1" style="width: 800px; padding: 50px; background-color: white; margin-top: 20px;">
+      <div class="top">
+        <div class="Info">
+          <div id="main_heading">
+            <h1> {{ form['name'] }} </h1>
+            <div id="exp">
+              <h3> {{ form['xp'] }} years experience </h3>
+            </div>
+          </div>
+
+
+          <div class="Info-1">
+            <div class="main_info">
+              <h4> {{ form['designation'] }} </h4>
+              <font color=#87CEFA> {{ form['city'] }}, {{ form['country'] }} </font>
+            </div>
+
+            <div class="main_info">
+              <h4> {{ form['phone'] }} </h4>
+              <font color=#87CEFA> {{ form['email'] }} </font>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="img">
+                    <img src="portfolio_img.jpg" alt="My image" height="195px">
+                </div> -->
+      </div>
+
+      <div class="sect-1">
+
+        <div class="para">
+          <p>
+            {{ form['profile'] }}
+          </p>
+        </div>
+
+        <div class="achievements">
+
+          <font color="DarkGray">FOLLOW ME</font>
+          <br>
+
+          <ul>
+            {% if(form['linkedin']) %}
+            <li>
+              <font size=5><u>LinkedIn:</u></font><br>
+              <font size=3>{{ form['linkedin'] }}</font>
+            </li>
+            {% endif %}
+            {% if(form['insta']) %}
+            <li>
+              <font size=5><u>Instagram:</u></font><br>
+              <font size=3>{{ form['insta'] }}</font>
+            </li>
+            {% endif %}
+            {% if(form['twitter']) %}
+            <li>
+              <font size=5><u>Twitter:</u></font><br>
+              <font size=3>{{ form['twitter'] }}</font>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+
+
+      <p style="color:DarkGray">KEY SKILLS</p>
+
+      <div class="sect-2">
+        <div class="vertical_graph">
+          <div class="container-1">
+
+            <div class="graph graph1">
+              <div class="inner" id="skill1"></div>
+            </div>
+            <div class="graph graph2">
+              <div class="inner" id="skill2"></div>
+            </div>
+            <div class="graph graph3">
+              <div class="inner" id="skill3"></div>
+            </div>
+
+          </div>
+
+          <div class="container-2">
+            <div class="name" id="name1"></div>
+            <div class="name" id="name2"></div>
+            <div class="name" id="name3"></div>
+          </div>
+
+          <div class="container-1 container-3">
+
+            <div class="graph graph4">
+              <div class="inner" id="skill4"></div>
+            </div>
+            <div class="graph graph5">
+              <div class="inner" id="skill5"></div>
+            </div>
+            <div class="graph graph6">
+              <div class="inner" id="skill6"></div>
+            </div>
+
+          </div>
+
+          <div class="container-2 container-4">
+            <div class="name" id="name4"></div>
+            <div class="name" id="name5"></div>
+            <div class="name" id="name6"></div>
+          </div>
+        </div>
+
+        <div class="certi">
+          <font color="DarkGray" style="margin-left: 10px;">HOBBIES</font>
+          <ul>
+            <li>{{ form['hobby1'] }}</li>
+            <li>{{ form['hobby2'] }}</li>
+            <li>{{ form['hobby3'] }}</li>
+            {% if(form['hobby4']) %}
+            <li>{{ form['hobby4'] }}</li>
+            {% endif %}
+            {% if(form['hobby5']) %}
+            <li>{{ form['hobby5'] }}</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="resumepart2" style="width: 800px; padding: 50px; background-color: white;">
+      <div class="sect-3">
+        <div class="work-exp">
+          <div style="margin-bottom: -20px;">
+            <font color="DarkGray">WORK EXPERIENCE</font>
+          </div><br>
+          <ul>
+            <li>
+              <font size=5><em><strong>{{ form['post1'] }}</strong></em></font><br>
+              <font size=3><strong>{{ form['company1'] }} |</strong></font>
+              <font color="#48D1CC">{{ form['cfrom_date1'] }} - {{ form['cto_date1'] }}</font>
+              <p>
+                {{ form['desc1'] }}
+              </p>
+            </li>
+            <li>
+            <font size=5><em><strong>{{ form['post2'] }}</strong></em></font><br>
+              <font size=3><strong>{{ form['company2'] }} |</strong></font>
+              <font color="#48D1CC">{{ form['cfrom_date2'] }} - {{ form['cto_date2'] }}</font>
+              <p>
+                {{ form['desc2'] }}
+              </p>
+            </li>
+
+            {% if(form['post3']) %}
+            <li>
+            <font size=5><em><strong>{{ form['post3'] }}</strong></em></font><br>
+            <font size=3><strong>{{ form['company3'] }} |</strong></font>
+                <font color="#48D1CC">{{ form['cfrom_date3'] }} - {{ form['cto_date3'] }}</font>
+                <p>
+                  {{ form['desc3'] }}
+                </p>
+            </li>
+            {% endif %}
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="education">
+        <font color="DarkGray">EDUCATION</font><br>
+        <table>
+          
+            <tr>
+              <th>COURSE</th>
+              <th>SCHOOL/COLLEGE</th>
+              <th>YEAR OF PASSING</th>
+            </tr>
+            <tr>
+              <td>{{ form['deg1'] }}</td>
+              <td>{{ form['college1'] }}</td>
+              <td>{{ form['efrom_date1'] }} - {{ form['eto_date1'] }}</td>
+            </tr>
+
+            <tr>
+              <td>{{ form['deg2'] }}</td>
+              <td>{{ form['college2'] }}</td>
+              <td>{{ form['efrom_date2'] }} - {{ form['eto_date2'] }}</td>
+            </tr>
+
+            {% if(form['deg3']) %}
+            <tr>
+              <td>{{ form['deg3'] }}</td>
+              <td>{{ form['college3'] }}</td>
+              <td>{{ form['efrom_date3'] }} - {{ form['eto_date3'] }}</td>
+            </tr>
+            {% endif %}
+        </table>
+      </div>
+    </div>
+    <!--container ends here -->
+
+    <script src="static/scripts/pdf1.js"></script>
+    <script src="static/scripts/resume1.js"></script>
+    <button id="download" style="width:20%; height:30px; margin: 20px 575px;"> Download PDF </button>
+  </body>
+
+</html>
